@@ -1,0 +1,23 @@
+body{
+	background: gray;
+}
+
+h1, h4{
+	text-align: center;
+	color: white;
+	font-family: arial;
+}
+
+#mapcontainer{
+	width: 60%;
+  	height: 500px;
+  	display: inline-block;
+  	float: left;
+}
+
+#sidebar{
+	height: 500px;
+	display: inline-block;
+	float: right;
+	width: 38%;
+}
