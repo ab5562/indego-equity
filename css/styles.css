@@ -16,8 +16,10 @@ h1, h4{
 }
 
 #sidebar{
-	height: 500px;
+	height: 460px;
 	display: inline-block;
 	float: right;
-	width: 38%;
+	width: 36%;
+	background: lightgray;
+	padding: 20px;
 }
