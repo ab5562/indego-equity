@@ -9,21 +9,27 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
       }).addTo(map);
 
-var neighborhoods = L.geoJson(neighborhoods, {
-	style: function getColor (feature) {
-		if (feature.properties.PercPov > 40) return 'red';
-		if (feature.properties.PercPov > 0) return 'blue';
 
-		//return d > 40 ? 'orange' :
-		//				'blue';
-		function style(feature) {
-			return {
-				fillColor: getColor(feature.properties.PercPov),
-				weight: 1
-			};
-		}
-	}
-}).addTo(map);
+// HELP NEEDED
+// Here I'm trying to add a choropleth layer based on neighborhood poverty level (PercPov), 
+//    but something isn't working.
+
+function getColor(d) {
+	return 	d > 40 ? 	'steelblue' :
+						'red';
+}
+
+function style(feature){
+	return{
+		fillColor: getColor(feature.properties.PercPov),
+		weight: 1
+	};
+}
+
+L.geoJson(neighborhoods, {style: style}).addTo(map);
+
+
+// END HELP NEEDED
 
 var bufferOutline = L.geoJson(buffer).addTo(map);
 
