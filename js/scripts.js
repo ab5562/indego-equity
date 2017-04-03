@@ -10,26 +10,52 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
       }).addTo(map);
 
 
-// HELP NEEDED
-// Here I'm trying to add a choropleth layer based on neighborhood poverty level (PercPov), 
-//    but something isn't working.
+//set up styles for poverty choropleth
 
 function getColor(d) {
-	return 	d > 40 ? 	'steelblue' :
-						'red';
+	return 	d > 46 ?	'#BD0026' :
+			d > 34 ? 	'#F03B20' :
+			d > 24 ?	'#FD8D3C' :
+			d > 14 ? 	'#FECC5C' :
+						'#FFFFB2';
 }
 
 function style(feature){
 	return{
 		fillColor: getColor(feature.properties.PercPov),
-		weight: 1
+		weight: 1,
+		opacity: 1,
+		color: 'white',
+		fillOpacity: 0.7
 	};
 }
 
-L.geoJson(neighborhoods, {style: style}).addTo(map);
+//add poverty choropleth to map
+var poverty = L.geoJson(neighborhoods, {style: style}).addTo(map);
 
 
-// END HELP NEEDED
+//set up styles for nonwhite choropleth
+
+function getColor2(d) {
+	return 	d > 85 ?	'#006D2C' :
+			d > 64.5 ? 	'#2CA25F' :
+			d > 41.5 ?	'#66C2A4' :
+			d > 21 ? 	'#B2E2E2' :
+						'#EDF8FB';
+}
+
+function style2(feature){
+	return{
+		fillColor: getColor2(feature.properties.PercNW),
+		weight: 1,
+		opacity: 1,
+		color: 'white',
+		fillOpacity: 0.7
+	};
+}
+
+//add poverty choropleth to map
+var nonwhite = L.geoJson(neighborhoods, {style: style2}).addTo(map);
 
 var bufferOutline = L.geoJson(buffer).addTo(map);
 
@@ -63,3 +89,17 @@ var stationMarkers = L.geoJson(stations, {
      		' Docks currently available: ' + layer.feature.properties.docksAvailable + 
      		' Bikes currently available: ' + layer.feature.properties.bikesAvailable);  
 }).addTo(map);
+
+//define base and overlay layers for control
+
+var baseLayers = {
+	"Neighborhoods - percent in poverty": poverty,
+	"Neighborhoods - percent not white": nonwhite
+};
+
+var overlays = {
+	"Half Mile Walking Buffer": bufferOutline,
+	"Indego Kiosks": stationMarkers
+};
+//add control to map
+L.control.layers(baseLayers, overlays).addTo(map);
