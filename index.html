@@ -3,69 +3,85 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Philadelphia Bikeshare Map</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <title>Bikeshare and Equity in Philadelphia</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> 
   <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" /> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-  <h1>Philadelphia Bike Share</h1>
-  <h4>Descriptive Content Here.</h4>
+  <h1>Bikeshare and Equity in Philadelphia</h1>
+  <h4>How well does Philly's Indego serve its diverse population?</h4>
+
+<!-- Create divs for map container and sidebar -->
 
   <div id="mapcontainer"></div>
-  <div id="sidebar">Sidebar Content</div>
 
-  <div class='cartodb-legend density'>  
-<ul>
-  <li class="min">
-  Neighborhoods - percent in poverty
-  </li>
   
-  <li class="graph leg" style="border-radius: 0; border:none">
-  <div class="colors">
-    <div class="quartile" style="background-color:#FFFFB2"></div>
-    <div class="quartile" style="background-color:#FECC5C"></div>
-    <div class="quartile" style="background-color:#FD8D3C"></div>
-    <div class="quartile" style="background-color:#F03B20"></div>
-    <div class="quartile" style="background-color:#BD0026"></div>
+  <div id="sidebar">
+    </br>As bikeshare becomes more popular across the U.S., cities must take steps to ensure that all residents
+    have equal access, regardless of factors such as race and socioeconomic status.</br></br>
+    </br>This interactive map shows how the location of current Indego bikeshare stations in Philadelphia relates to poverty and race. Toggle the layers, or click on a neighborhood to see its statistics. </br></br>
+    </br>Race and poverty data were calculated from 2015 American Community Survey 5-year Estimates. Indego kiosks
+    were mapped from opendataphilly.org, and the half mile walking buffer to stations was calculated in Esri 
+    ArcGIS using street data from opendataphilly.org.  Neighborhood boundaries are based on definitions by 
+    Azavea, Inc., but were adjusted to be coterminous with census tract boundaries.
   </div>
-    <div class="colors" style="font-weight:normal; text-align: center"
->
-    <div class="quartile" style="padding-top: 5px" >[0-14]</div>
-    <div class="quartile" style="padding-top: 5px" >[15-24]</div>
-    <div class="quartile" style="padding-top: 5px" >[25-34]</div>
-    <div class="quartile" style="padding-top: 5px" >[35-46]</div>
-    <div class="quartile" style="padding-top: 5px" >[47-60]</div>
-  </div>
-  </li>
-</ul>
-
-<ul>
-  <li class="min">
-  Neighborhoods - percent not white
-  </li>
   
-  <li class="graph leg" style="border-radius: 0; border:none">
-  <div class="colors">
-    <div class="quartile" style="background-color:#EDF8FB"></div>
-    <div class="quartile" style="background-color:#B2E2E2"></div>
-    <div class="quartile" style="background-color:#66C2A4"></div>
-    <div class="quartile" style="background-color:#2CA25F"></div>
-    <div class="quartile" style="background-color:#006D2C"></div>
-  </div>
-    <div class="colors" style="font-weight:normal; text-align: center"
->
-    <div class="quartile" style="padding-top: 5px" >[0-21]</div>
-    <div class="quartile" style="padding-top: 5px" >[22-42]</div>
-    <div class="quartile" style="padding-top: 5px" >[43-65]</div>
-    <div class="quartile" style="padding-top: 5px" >[66-85]</div>
-    <div class="quartile" style="padding-top: 5px" >[85-100]</div>
-  </div>
-  </li>
-</ul>
 
+<!-- Create legends for choropleth.  Based off tutoria here: 
+      http://bl.ocks.org/michellechandra/90d59f022ad7e9fd0e5d -->
+
+ <div id = "legend">
+    <div class='cartodb-legend density'>  
+      <ul>
+        <li class="min">
+          Neighborhoods - percent in poverty
+        </li>
+        
+        <li class="graph leg" style="border-radius: 0; border:none">
+          <div class="colors">
+            <div class="quartile" style="background-color:#FFFFB2"></div>
+            <div class="quartile" style="background-color:#FECC5C"></div>
+            <div class="quartile" style="background-color:#FD8D3C"></div>
+            <div class="quartile" style="background-color:#F03B20"></div>
+            <div class="quartile" style="background-color:#BD0026"></div>
+          </div>
+            <div class="colors" style="font-weight:normal; text-align: center">
+            <div class="quartile" style="padding-top: 5px" >[0-14]</div>
+            <div class="quartile" style="padding-top: 5px" >[15-24]</div>
+            <div class="quartile" style="padding-top: 5px" >[25-34]</div>
+            <div class="quartile" style="padding-top: 5px" >[35-46]</div>
+            <div class="quartile" style="padding-top: 5px" >[47-60]</div>
+          </div>
+        </li>
+      </ul>
+
+    <ul>
+      <li class="min">
+      Neighborhoods - percent not white
+      </li>
+    
+      <li class="graph leg" style="border-radius: 0; border:none">
+        <div class="colors">
+          <div class="quartile" style="background-color:#EDF8FB"></div>
+          <div class="quartile" style="background-color:#B2E2E2"></div>
+          <div class="quartile" style="background-color:#66C2A4"></div>
+          <div class="quartile" style="background-color:#2CA25F"></div>
+          <div class="quartile" style="background-color:#006D2C"></div>
+        </div>
+          <div class="colors" style="font-weight:normal; text-align: center">
+          <div class="quartile" style="padding-top: 5px" >[0-21]</div>
+          <div class="quartile" style="padding-top: 5px" >[22-42]</div>
+          <div class="quartile" style="padding-top: 5px" >[43-65]</div>
+          <div class="quartile" style="padding-top: 5px" >[66-85]</div>
+          <div class="quartile" style="padding-top: 5px" >[85-100]</div>
+        </div>
+      </li>
+    </ul>
+
+  </div>
 </div>
 
 
