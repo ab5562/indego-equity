@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> 
   <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" /> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 
 <body>
@@ -16,9 +17,62 @@
   <div id="mapcontainer"></div>
   <div id="sidebar">Sidebar Content</div>
 
+  <div class='cartodb-legend density'>  
+<ul>
+  <li class="min">
+  Neighborhoods - percent in poverty
+  </li>
+  
+  <li class="graph leg" style="border-radius: 0; border:none">
+  <div class="colors">
+    <div class="quartile" style="background-color:#FFFFB2"></div>
+    <div class="quartile" style="background-color:#FECC5C"></div>
+    <div class="quartile" style="background-color:#FD8D3C"></div>
+    <div class="quartile" style="background-color:#F03B20"></div>
+    <div class="quartile" style="background-color:#BD0026"></div>
+  </div>
+    <div class="colors" style="font-weight:normal; text-align: center"
+>
+    <div class="quartile" style="padding-top: 5px" >[0-14]</div>
+    <div class="quartile" style="padding-top: 5px" >[15-24]</div>
+    <div class="quartile" style="padding-top: 5px" >[25-34]</div>
+    <div class="quartile" style="padding-top: 5px" >[35-46]</div>
+    <div class="quartile" style="padding-top: 5px" >[47-60]</div>
+  </div>
+  </li>
+</ul>
+
+<ul>
+  <li class="min">
+  Neighborhoods - percent not white
+  </li>
+  
+  <li class="graph leg" style="border-radius: 0; border:none">
+  <div class="colors">
+    <div class="quartile" style="background-color:#EDF8FB"></div>
+    <div class="quartile" style="background-color:#B2E2E2"></div>
+    <div class="quartile" style="background-color:#66C2A4"></div>
+    <div class="quartile" style="background-color:#2CA25F"></div>
+    <div class="quartile" style="background-color:#006D2C"></div>
+  </div>
+    <div class="colors" style="font-weight:normal; text-align: center"
+>
+    <div class="quartile" style="padding-top: 5px" >[0-21]</div>
+    <div class="quartile" style="padding-top: 5px" >[22-42]</div>
+    <div class="quartile" style="padding-top: 5px" >[43-65]</div>
+    <div class="quartile" style="padding-top: 5px" >[66-85]</div>
+    <div class="quartile" style="padding-top: 5px" >[85-100]</div>
+  </div>
+  </li>
+</ul>
+
+</div>
+
+
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   <script src="js/neighborhoods.js"></script>
   <script src="js/buffer.js"></script>
   <script src="js/stations.js"></script>

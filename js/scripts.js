@@ -73,21 +73,22 @@ var stationMarkers = L.geoJson(stations, {
       }
 
       var geojsonMarkerOptions = {
-        radius: getRadius(feature),
-        //radius: 10,
+        //radius: getRadius(feature),
+        radius: 3,
         fillColor: "deepskyblue",
         color: "gray",
         weight: 2,
         opacity: .05,
-        fillOpacity: 0.8
+        fillOpacity: 0.8,
+        z: 1
       };
 
       return L.circleMarker(latlng, geojsonMarkerOptions);
     }
-}).bindPopup(function (layer) {
-    return (' Total number of docks in kiosk: ' + layer.feature.properties.totalDocks +
-     		' Docks currently available: ' + layer.feature.properties.docksAvailable + 
-     		' Bikes currently available: ' + layer.feature.properties.bikesAvailable);  
+//}).bindPopup(function (layer) {
+//    return (' Total number of docks in kiosk: ' + layer.feature.properties.totalDocks +
+//    		' Docks currently available: ' + layer.feature.properties.docksAvailable + 
+//     		' Bikes currently available: ' + layer.feature.properties.bikesAvailable);  
 }).addTo(map);
 
 //define base and overlay layers for control
@@ -102,4 +103,15 @@ var overlays = {
 	"Indego Kiosks": stationMarkers
 };
 //add control to map
-L.control.layers(baseLayers, overlays).addTo(map);
+L.control.layers(baseLayers,overlays,{
+	collapsed:false,
+	position:'bottomright'
+}).addTo(map);
+
+
+// Set up an invisible neighborhoods layer.  
+//   This will allow users to click on neighborhoods for info
+var neighborhoodinfo = L.geoJson(neighborhoods, {
+	opacity: 0,
+	fillOpacity: 0
+}).addTo(map);
