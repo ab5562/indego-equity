@@ -86,7 +86,8 @@
 
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+  <!-- carto cdn is not reading into the broswer (warning: "unsafe script").  Resolved by copying the contents of the cdn link into a js file stored in repo. <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script> -->
+  <script src="js.cartocopy.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
   <script src="js/neighborhoods.js"></script>
