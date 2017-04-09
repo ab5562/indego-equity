@@ -25,12 +25,11 @@
     </br>This interactive map shows how the location of current Indego bikeshare stations in Philadelphia relates to poverty and race. Toggle the layers, or click on a neighborhood to see its statistics. </br></br>
     </br>Race and poverty data were calculated from 2015 American Community Survey 5-year Estimates. Indego kiosks
     were mapped from opendataphilly.org, and the half mile walking buffer to stations was calculated in Esri 
-    ArcGIS using street data from opendataphilly.org.  Neighborhood boundaries are based on definitions by 
-    Azavea, Inc., but were adjusted to be coterminous with census tract boundaries.
+    ArcGIS using street data from opendataphilly.org, excluding expressways. Neighborhood boundaries are based on definitions by Azavea, Inc., but were adjusted to be coterminous with census tract boundaries. Tracts were dropped from the analysis if their population was less than 100, or if they lacked ACS data.
   </div>
   
 
-<!-- Create legends for choropleth.  Based off tutoria here: 
+<!-- Create legends for choropleth.  Based off tutorial here: 
       http://bl.ocks.org/michellechandra/90d59f022ad7e9fd0e5d -->
 
  <div id = "legend">
